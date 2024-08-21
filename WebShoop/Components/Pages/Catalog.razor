@@ -1,0 +1,37 @@
+﻿@using WebShoop.Models
+@page "/Catalog"
+@inject ProductService ProductService
+@inject NavigationManager nav
+
+
+<PageTitle>Catalog</PageTitle>
+<h1>Catalog</h1>
+<div class="main">
+    <ul class="product-cards">
+        @if (products != null && products.Any())
+        {
+            @foreach (var Product in products)
+            {
+                <li style="background-image: url('@Product.Img')">
+                    <div class="product-info">
+                        <span class="title">@Product.Name</span>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <li>No products available.</li>
+        }
+    </ul>
+</div>
+
+@code {
+    private List<Product> products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.GetProductsAsync();
+    }
+  
+}
