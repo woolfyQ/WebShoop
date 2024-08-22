@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebShoop.Data;
-using WebShoop.Models;
+using Core.Entities;
 
 namespace WebShoop
 {

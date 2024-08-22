@@ -22,7 +22,7 @@ namespace WebShoop.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WebShoop.Models.Cart", b =>
+            modelBuilder.Entity("Core.Entities.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace WebShoop.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.Category", b =>
+            modelBuilder.Entity("Core.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace WebShoop.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.Product", b =>
+            modelBuilder.Entity("Core.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,7 +92,7 @@ namespace WebShoop.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.ProductinCart", b =>
+            modelBuilder.Entity("Core.Entities.ProductinCart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -116,7 +116,7 @@ namespace WebShoop.Migrations
                     b.ToTable("ProductInCarts");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.ProductinStorage", b =>
+            modelBuilder.Entity("Core.Entities.ProductinStorage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,7 +135,7 @@ namespace WebShoop.Migrations
                     b.ToTable("ProductInStorages");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.Rating", b =>
+            modelBuilder.Entity("Core.Entities.Rating", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -159,7 +159,7 @@ namespace WebShoop.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.Storage", b =>
+            modelBuilder.Entity("Core.Entities.Storage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,7 +174,7 @@ namespace WebShoop.Migrations
                     b.ToTable("Storages");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.User", b =>
+            modelBuilder.Entity("Core.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,15 +193,15 @@ namespace WebShoop.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.Cart", b =>
+            modelBuilder.Entity("Core.Entities.Cart", b =>
                 {
-                    b.HasOne("WebShoop.Models.Product", "ProductinCart")
+                    b.HasOne("Core.Entities.Product", "ProductinCart")
                         .WithMany()
                         .HasForeignKey("ProductinCartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebShoop.Models.User", "User")
+                    b.HasOne("Core.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -212,15 +212,15 @@ namespace WebShoop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.ProductinCart", b =>
+            modelBuilder.Entity("Core.Entities.ProductinCart", b =>
                 {
-                    b.HasOne("WebShoop.Models.Cart", "Cart")
+                    b.HasOne("Core.Entities.Cart", "Cart")
                         .WithMany()
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebShoop.Models.Product", "Product")
+                    b.HasOne("Core.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -231,9 +231,9 @@ namespace WebShoop.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.ProductinStorage", b =>
+            modelBuilder.Entity("Core.Entities.ProductinStorage", b =>
                 {
-                    b.HasOne("WebShoop.Models.Product", "Product")
+                    b.HasOne("Core.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -242,15 +242,15 @@ namespace WebShoop.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebShoop.Models.Rating", b =>
+            modelBuilder.Entity("Core.Entities.Rating", b =>
                 {
-                    b.HasOne("WebShoop.Models.Product", "Product")
+                    b.HasOne("Core.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebShoop.Models.User", "User")
+                    b.HasOne("Core.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

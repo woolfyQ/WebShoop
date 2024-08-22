@@ -1,4 +1,4 @@
-﻿using WebShoop.Models;
+﻿using Core.Entities;
 
 namespace WebShoop.Data
 {
