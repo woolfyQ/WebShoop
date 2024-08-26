@@ -1,6 +1,6 @@
 ﻿namespace Core.Entities;
 
-public class ProductCart
+public class ProductCart : IEntity
 {
     public Guid Id { get; set; }
     public Cart Cart { get; set; }

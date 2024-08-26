@@ -2,7 +2,7 @@
 
 namespace Core.Entities
 {
-    public class Category
+    public class Category : IEntity
     {
         [Key]
         public Guid Id { get; set; }

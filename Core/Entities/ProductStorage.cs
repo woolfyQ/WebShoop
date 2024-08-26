@@ -2,7 +2,7 @@
 
 namespace Core.Entities
 {
-    public class ProductStorage
+    public class ProductStorage : IEntity
     {
         [Key]
         public Guid Id { get; set; }

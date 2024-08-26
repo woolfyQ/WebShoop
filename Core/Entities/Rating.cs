@@ -2,7 +2,7 @@
 
 namespace Core.Entities
 {
-    public class Rating
+    public class Rating : IEntity
     {
         [Key]
         public Guid Id { get; set; }

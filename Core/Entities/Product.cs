@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Core.Entities;
 
-public class Product
+public class Product : IEntity
 {
     [Key]
     public Guid Id { get; set; }

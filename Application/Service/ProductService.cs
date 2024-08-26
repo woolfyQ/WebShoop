@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebShoop.Data;
 using Core.Entities;
+using WebShoop.Data;
 
-namespace WebShoop
+namespace Application.Service
 {
     public class ProductService
     {
@@ -10,7 +10,7 @@ namespace WebShoop
         public ProductService(ApplicationDbContext context)
         {
             _context = context;
-        }   
+        }
         public async Task<List<Product>> GetProductsAsync()
         {
             return await _context.Products.ToListAsync();

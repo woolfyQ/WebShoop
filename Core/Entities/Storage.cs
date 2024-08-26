@@ -2,7 +2,7 @@
 
 namespace Core.Entities
 {
-    public class Storage
+    public class Storage : IEntity
     {
         [Key]
         public Guid Id { get; set; }
