@@ -3,10 +3,10 @@ using Core.Entities;
 
 namespace Application.Service
 {
-    public interface IApplicationService
+    public interface IApplicationService<TEntity, TDto>
     {
-        Task <Product> Create(ProductDTO productDTO);
-        Task <Product> Update (Guid Id, ProductDTO productDTO);  
-        Task <Product> Delete (Guid Id);  
+        Task <TEntity> Create(TDto dto);
+        Task <TEntity> Update (Guid Id, TDto dto);  
+        Task <TEntity> Delete (Guid Id);  
     }
 }

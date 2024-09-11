@@ -8,7 +8,7 @@ using Infrastructure;
 namespace Application.Service
 {
 
-    public class ProductService : IApplicationService
+    public class ProductService : IApplicationService<Product, ProductDTO>
     {
         
         private readonly IRepository<Product> _ProductRepository;
