@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Core.Entities;
-using WebShoop.Data;
+﻿using Core.Entities;
 using Core.DTO;
 using Core;
-using Infrastructure;
+
 
 namespace Application.Service
 {
@@ -11,11 +9,11 @@ namespace Application.Service
     public class ProductService : IApplicationService<Product, ProductDTO>
     {
         
-        private readonly IRepository<Product> _ProductRepository;
+        private readonly IRepository<Product> _productRepository;
 
-        public ProductService(IRepository<Product> ProductRepository)
+        public ProductService(IRepository<Product> productRepository)
         {
-            _ProductRepository = ProductRepository;
+            _productRepository = productRepository;
         }
 
         public async Task<Product> Create(ProductDTO productDTO)
@@ -30,35 +28,40 @@ namespace Application.Service
                 Specs = productDTO.Specs,
             };
 
-            await _ProductRepository.Create(product, CancellationToken.None);
+            await _productRepository.Create(product, CancellationToken.None);
             return product;
             
         }
         public async Task<Product> Update(Guid Id, ProductDTO productDTO)
         {
-            var product = new Product
+            var product = await _productRepository.GetByIdAsync(Id, CancellationToken.None);
             {
-                Id = Id,
-                Description = productDTO.Description,
-                Name = productDTO.Name,
-                Img = productDTO.Img,
-                Price = productDTO.Price,
-                Specs = productDTO.Specs,
-            };
-            await _ProductRepository.Update(product, CancellationToken.None);
+                if (product == null)
+                {
+                    throw new Exception("Product not found");
+                }
+                
+                product.Description = productDTO.Description;
+                product.Name = productDTO.Name;
+                product.Img = productDTO.Img;
+                product.Price = productDTO.Price;
+                product.Specs = productDTO.Specs;
+                
+            }
+            await _productRepository.Update(product, CancellationToken.None);
             return product;
         }
         public async Task<Product> Delete(Guid Id)
         {
 
-            var product = await _ProductRepository.GetByIdAsync(Id, CancellationToken.None);
+            var product = await _productRepository.GetByIdAsync(Id, CancellationToken.None);
 
             if (product == null)
             {
                 throw new Exception("Product nof found");
             }
 
-            await _ProductRepository.Delete(product, CancellationToken.None);
+            await _productRepository.Delete(product, CancellationToken.None);
             return product;
         }
     }

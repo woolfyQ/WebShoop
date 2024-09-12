@@ -1,6 +1,6 @@
 ﻿namespace Application.Service
 {
-    public class WareHouseService
+    public class WareHouseService /*: IApplicationService<>*/
     {
 
 
