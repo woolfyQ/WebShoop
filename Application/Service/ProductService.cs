@@ -34,7 +34,7 @@ namespace Application.Service
         }
         public async Task<Product> Update(Guid Id, ProductDTO productDTO)
         {
-            var product = await _productRepository.GetByIdAsync(Id, CancellationToken.None);
+            var product = await _productRepository.GetByIdAsync(Id);
             {
                 if (product == null)
                 {
@@ -54,7 +54,7 @@ namespace Application.Service
         public async Task<Product> Delete(Guid Id)
         {
 
-            var product = await _productRepository.GetByIdAsync(Id, CancellationToken.None);
+            var product = await _productRepository.GetByIdAsync(Id);
 
             if (product == null)
             {

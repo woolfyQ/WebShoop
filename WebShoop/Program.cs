@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using WebShoop;
 using WebShoop.Components;
 using WebShoop.Data;
 

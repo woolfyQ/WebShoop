@@ -1,6 +1,4 @@
-﻿
-
-namespace Core
+﻿namespace Core
 {
     public record Id(Guid Value);
     public interface IEntity
@@ -16,8 +14,7 @@ namespace Core
         Task Update(IEnumerable <IEntity> entities, CancellationToken cancellationToken);   
         Task Delete (IEntity entity, CancellationToken cancellationToken);
         Task Delete(IEnumerable<IEntity> entity, CancellationToken cancellationToken);
-        
-        Task <TEntity> GetByIdAsync(Guid Id, CancellationToken cancellationToken);
+        Task <TEntity> GetByIdAsync(Guid Id);
     }
         
 

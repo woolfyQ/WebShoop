@@ -27,7 +27,7 @@ namespace Application.Service
         }
         public async Task <User> Update(Guid Id, UserDTO userDTO)
         {
-            var user = await _userRepository.GetByIdAsync(Id, CancellationToken.None);
+            var user = await _userRepository.GetByIdAsync(Id);
             if (user == null)
             {
                 throw new Exception("User not found");
@@ -42,7 +42,7 @@ namespace Application.Service
         }
         public async Task<User> Delete(Guid Id)
         {
-            var user = await _userRepository.GetByIdAsync(Id, CancellationToken.None);
+            var user = await _userRepository.GetByIdAsync(Id);
             if (user == null)
             {
                 throw new Exception("User not found");

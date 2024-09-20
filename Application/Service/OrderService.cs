@@ -26,7 +26,7 @@ namespace Application.Service
 
         public async Task <Cart> Update(Guid Id,CartDTO cartDTO)
         {
-            var cart = await _orderRepository.GetByIdAsync(Id, CancellationToken.None);
+            var cart = await _orderRepository.GetByIdAsync(Id);
             if (cart == null)
             {
                 throw new Exception("Cart not Found");
@@ -42,7 +42,7 @@ namespace Application.Service
 
         public async Task<Cart> Delete(Guid Id)
         {
-            var cart = await _orderRepository.GetByIdAsync(Id, CancellationToken.None);
+            var cart = await _orderRepository.GetByIdAsync(Id);
             if(cart == null)
             {
                 throw new Exception("Cart not found");

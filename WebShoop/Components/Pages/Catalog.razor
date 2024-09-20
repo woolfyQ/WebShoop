@@ -1,4 +1,4 @@
-﻿@using Core.Entities
+﻿@* @using Core.Entities
 @page "/Catalog"
 @inject ProductService ProductService
 @inject NavigationManager nav
@@ -34,4 +34,4 @@
         products = await ProductService.GetProductsAsync();
     }
   
-}
+} *@
