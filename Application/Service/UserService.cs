@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using Application.Interfaces;
+using Core;
 using Core.DTO;
 using Core.Entities;
 

@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.DTO;
 using Core;
+using Application.Interfaces;
 
 
 namespace Application.Service
