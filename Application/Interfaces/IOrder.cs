@@ -4,9 +4,11 @@ namespace Application.Interfaces
 {
     public interface IOrder <TEntity, Tdto>
     {
-        Task<TEntity> Create (OrderDTO orderDTO);
-        Task<TEntity> AddProduct (Guid Id, ProductDTO productDTO, int Amount);
-        Task<TEntity> Delete (Guid Id);
+        Task<TEntity> Create (ProductCartDTO productCartDTO);
+        Task<TEntity> AddProduct (ProductCartDTO productCartDTO);
+        Task<TEntity> Delete (Guid Id, ProductCartDTO productCartDTO);
+
+
 
 
     }

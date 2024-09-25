@@ -20,7 +20,7 @@ namespace Application.Service
             var productStorage = new ProductStorage
             {
                 Id = Guid.NewGuid(),
-                Amount = wareHouseDTO.Amount,
+                Amount = 0,
                 Product = wareHouseDTO.Product,
             };
             await _storageRepository.Create(productStorage, CancellationToken.None); 

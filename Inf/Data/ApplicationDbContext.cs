@@ -18,12 +18,6 @@ namespace WebShoop.Data
         public DbSet<ProductStorage> ProductInStorages { get; set;}
         public DbSet<Storage> Storages { get; set; }
         public DbSet<Rating> Ratings { get; set;}
-        
-      
-
-        
-       
-
-
+ 
     }
 }
