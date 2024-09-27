@@ -12,7 +12,7 @@ namespace Core.DTO
       
         public decimal Price { get; set; }
 
-        public string[] Img { get; set; }
+        public string Img { get; set; }
 
         public string Specs { get; set; }
 

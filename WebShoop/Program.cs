@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebShoop.Components;
+using WebShoopClient.Components;
 using WebShoop.Data;
 
 
@@ -9,12 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
    
 });
-builder.Services.AddScoped<ProductService>();
+
+
+builder.Services.AddScoped<ApplicationDbContext>();
 var app = builder.Build();
 if (args.Length == 1 && args[0].ToLower() == "SeedData")
 {

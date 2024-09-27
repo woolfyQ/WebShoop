@@ -2,6 +2,7 @@
 using Core.DTO;
 using Core;
 using Application.Interfaces;
+using System.Runtime.CompilerServices;
 
 
 namespace Application.Service
@@ -17,6 +18,9 @@ namespace Application.Service
             _productRepository = productRepository;
         }
 
+
+
+  
         public async Task<Product> Create(ProductDTO productDTO)
         {
             var product = new Product

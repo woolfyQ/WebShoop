@@ -11,7 +11,7 @@ public class Product : IEntity
 
     public decimal Price { get; set; }
 
-    public string[] Img { get; set; }
+    public string Img { get; set; }
 
     public string Specs { get; set; }
 

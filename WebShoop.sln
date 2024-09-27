@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebShoop", "WebShoop\WebShoop.csproj", "{A415246C-4EBE-4440-B316-10A6B892B80E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebShoopClient", "WebShoop\WebShoopClient.csproj", "{A415246C-4EBE-4440-B316-10A6B892B80E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{DE5D2FB1-0E15-425C-A418-96BEBDEF69D0}"
 EndProject
@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Inf\Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{0982196D-64D1-4ED3-9C8E-72BCA6E01BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShop.API", "WebShopApi\WebShop.API.csproj", "{30D104E6-2502-495B-B90F-E863D8EF4C4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebShop.API", "WebShopApi\WebShop.API.csproj", "{30D104E6-2502-495B-B90F-E863D8EF4C4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

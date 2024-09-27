@@ -20,7 +20,7 @@ namespace Core.DTO
         };
 
 
-        // Преобразовать DTO сразу.
+
 
     }
 }

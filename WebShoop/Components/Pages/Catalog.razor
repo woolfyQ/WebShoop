@@ -1,6 +1,7 @@
-﻿@* @using Core.Entities
-@page "/Catalog"
-@inject ProductService ProductService
+﻿@using Core.DTO
+@using Core.Entities
+
+@page "/Catalog" 
 @inject NavigationManager nav
 
 
@@ -27,11 +28,12 @@
 </div>
 
 @code {
-    private List<Product> products;
+    private IEnumerable<ProductDTO> products;
 
+    
     protected override async Task OnInitializedAsync()
     {
-        products = await ProductService.GetProductsAsync();
+        var products = await _productRepository.GetAllAsync();
     }
   
-} *@
+}
