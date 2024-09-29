@@ -9,12 +9,11 @@ namespace Application.Service
     public class OrderService : IOrder<Cart, ProductCartDTO>
     {
         private readonly IRepository<Cart> _cartRepository; // Репозиторий для Cart
-        private readonly IRepository<ProductCart> _productCartRepository; // Репозиторий для ProductCart
+        //private readonly IRepository<ProductCart> _productCartRepository; // Репозиторий для ProductCart
 
         public OrderService(IRepository<Cart> cartRepository, IRepository<ProductCart> productCartRepository)
         {
-            _cartRepository = cartRepository;
-            _productCartRepository = productCartRepository;
+            _cartRepository = cartRepository; 
         }
 
         public async Task<Cart> Create(ProductCartDTO productCartDTO)
@@ -27,7 +26,7 @@ namespace Application.Service
                     Id = Guid.NewGuid(),
                     User = productCartDTO.User,
                     TotalPrice = 0,
-                    Products = new List<ProductCart>()
+                    Products = []
                 };
                 var productCart = new ProductCart
                 {
@@ -59,11 +58,7 @@ namespace Application.Service
         }
         public async Task<Cart> AddProduct(ProductCartDTO productCartDTO)
         {
-            var cart = await _cartRepository.GetByIdAsync(productCartDTO.Id);
-            if (cart == null)
-            {
-                throw new Exception("Cart not found");
-            }
+            var cart = await _cartRepository.GetByIdAsync(productCartDTO.Id) ?? throw new Exception("Cart not found");
             var existingProduct = cart.Products.FirstOrDefault(p => p.Product.Id == productCartDTO.Product.Id);
             if (existingProduct != null)
             {
@@ -89,11 +84,7 @@ namespace Application.Service
 
         public async Task<Cart> Delete(Guid Id,ProductCartDTO productCartDTO)
         {
-            var cart = await _cartRepository.GetByIdAsync(productCartDTO.Id);
-            if (cart == null)
-            {
-                throw new Exception("Cart not found");
-            }
+            var cart = await _cartRepository.GetByIdAsync(productCartDTO.Id) ?? throw new Exception("Cart not found");
             await _cartRepository.Delete(cart,CancellationToken.None);
             return cart;
         }
