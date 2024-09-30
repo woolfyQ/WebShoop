@@ -7,7 +7,7 @@
 
 <PageTitle>Catalog</PageTitle>
 <h1>Catalog</h1>
-<div class="main">
+@* <div class="main">
     <ul class="product-cards">
         @if (products != null && products.Any())
         {
@@ -22,18 +22,18 @@
         }
         else
         {
-            <li>No products available.</li>
+            <li>No products available.</li>ы
         }
     </ul>
-</div>
+</div> *@
 
 @code {
-    private IEnumerable<ProductDTO> products;
+//     private IEnumerable<ProductDTO> products;
 
     
-    protected override async Task OnInitializedAsync()
-    {
-        var products = await _productRepository.GetAllAsync();
-    }
+//     protected override async Task OnInitializedAsync()
+//     {
+//         var products = await _productRepository.GetAllAsync();
+//     }
   
-}
+ }
