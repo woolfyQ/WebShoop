@@ -3,14 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebShop.API.Controller
 {
+    [ApiController]
     public class AuthController : ControllerBase
     {
+
+     
         private readonly TokenProvider _tokenProvider;
        
        public AuthController (TokenProvider tokenProvider)
         {
             _tokenProvider = tokenProvider;
         }
+       
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
         {
