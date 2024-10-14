@@ -2,7 +2,6 @@
 using Core.DTO;
 using Core;
 using Application.Interfaces;
-using System.Runtime.CompilerServices;
 
 
 namespace Application.Service
@@ -68,6 +67,19 @@ namespace Application.Service
 
             await _productRepository.Delete(product, CancellationToken.None);
             return product;
+        }
+
+        public async Task<Product> GetByIdAsync(Guid Id)
+        {
+            var product = await _productRepository.GetByIdAsync(Id);
+
+            if (product == null)
+            {
+                throw new Exception("Product nof found");
+            }
+            return product;
+
+
         }
     }
 }

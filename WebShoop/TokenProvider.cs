@@ -1,5 +1,4 @@
 ﻿using Core.DTO;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
@@ -14,6 +13,7 @@ namespace WebShop.API
             string secretKey = configuration["JWT:Secret"];
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(

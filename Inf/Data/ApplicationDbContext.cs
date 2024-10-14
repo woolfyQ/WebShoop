@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Core.Entities;
+using Microsoft.Extensions.Options;
 namespace WebShoop.Data
 {
     public class ApplicationDbContext : DbContext   
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-        
+            
+
         }
 
   

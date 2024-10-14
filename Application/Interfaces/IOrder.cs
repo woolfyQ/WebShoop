@@ -1,12 +1,11 @@
-﻿using Core.DTO;
-
-namespace Application.Interfaces
+﻿namespace Application.Interfaces
 {
-    public interface IOrder <TEntity, Tdto>
+    public interface IOrder <TEntity, TDto>
     {
-        Task<TEntity> Create (ProductCartDTO productCartDTO);
-        Task<TEntity> AddProduct (ProductCartDTO productCartDTO);
-        Task<TEntity> Delete (Guid Id, ProductCartDTO productCartDTO);
+        Task<TEntity> Create (TDto dto);
+        Task<TEntity> AddProduct (TDto dto );
+        Task<TEntity> Delete (Guid Id, TDto dto);
+        Task<TEntity> GetByIdAsync (Guid Id);
 
 
 

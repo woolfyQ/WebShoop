@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using WebShoopClient.Components;
 using WebShoop.Data;
+using Core.Entities;
+using Core;
+using Infrastructure.Repository;
+using Application.Service;
+using WebShop.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +19,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// Register controllers and Swagger before building the app
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(); // <-- Добавление Swagger
 
+builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<WareHouseService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TokenProvider>();
 var app = builder.Build();
 
-// Seed data if "SeedData" argument is provided
+
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     SeedData.Initialize(app);
@@ -45,7 +56,7 @@ app.UseStaticFiles();
 app.UseRouting(); // Использование маршрутизации
 app.UseAuthorization(); // Использование авторизации
 app.UseAntiforgery(); // Добавление защиты от CSRF
-
+app.MapControllers();
 // Map Razor Components
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

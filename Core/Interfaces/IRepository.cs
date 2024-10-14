@@ -8,14 +8,14 @@
 
     public interface IRepository<TEntity> where TEntity : IEntity
     {
-        Task Create (IEntity entity, CancellationToken cancellationToken);
-        Task Create (IEnumerable <IEntity> entity, CancellationToken cancellationToken);
-        Task Update (IEntity entity, CancellationToken cancellationToken);  
-        Task Update(IEnumerable <IEntity> entities, CancellationToken cancellationToken);   
-        Task Delete (IEntity entity, CancellationToken cancellationToken);
-        Task Delete(IEnumerable<IEntity> entity, CancellationToken cancellationToken);
-        Task <TEntity> GetByIdAsync(Guid Id);
+        Task Create(TEntity entity, CancellationToken cancellationToken);
+        Task Create(IEnumerable<TEntity> entities, CancellationToken cancellationToken);
+        Task Update(TEntity entity, CancellationToken cancellationToken);
+        Task Update(IEnumerable<TEntity> entities, CancellationToken cancellationToken);
+        Task Delete(TEntity entity, CancellationToken cancellationToken);
+        Task Delete(IEnumerable<TEntity> entities, CancellationToken cancellationToken);
+        Task<TEntity> GetByIdAsync(Guid id); // возвращаем TEntity
+        Task<TEntity> GetByEmailAsync(string email); // возвращаем TEntity
     }
-        
 
 }

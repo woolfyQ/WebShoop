@@ -14,74 +14,64 @@ namespace WebShoop.Data
             context.Database.EnsureCreated();
             if (!context.Products.Any())
             {
-                var productDTO = new List<ProductDTO>();
+                var product = new List<ProductDTO>();
                 {
-                    new ProductDTO { };
+                    new Product { };
                 };
 
 
-                var products = productDTO.Select(dto => new Product
-                {
-                    Name = dto.Name,
-                    Price = dto.Price,
-                    Img = dto.Img,
-                    Specs = dto.Specs,
-                    Description = dto.Description,
-                }).ToList();
 
+                context.Products.AddRange(
+                   new Product()
+                   {
+                       Name = "Graphit Premium",
+                       Price = 2200m,
+                       Img = "pics/Kolpak1.jpg",
+                       Specs = "310x310mm",
+                       Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
+                   },
+                   new Product()
+                   {
+                       Name = "DRAP (текстура) Premium",
+                       Price = 2200m,
+                       Img = "pics/Kolpak2.jpg",
+                       Specs = "410x410mm",
+                       Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
+                   },
+                    new Product()
+                    {
 
-
-                //context.Products.AddRange(
-                //   new Product()
-                //   {
-                //       Name = "Graphit Premium",
-                //       Price = 2200m,
-                //       Img = "pics/Kolpak1.jpg",
-                //       Specs = "310x310mm",
-                //       Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
-                //   },
-                //   new ProductDTO()
-                //   {
-                //       Name = "DRAP (текстура) Premium",
-                //       Price = 2200m,
-                //       Img = "pics/Kolpak2.jpg",
-                //       Specs = "410x410mm",
-                //       Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
-                //   },
-                //    new Product()
-                //    {
-
-                //        Name = "Graphit (ТЕКСТУРА) Premium",
-                //        Price = 2200m,
-                //        Img = "pics/Kolpak3.jpg",
-                //        Specs = "210x210mm",
-                //        Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
-                //    },
-                //     new Product()
-                //     {
-                //         Name = "DRAP (текстура) Premium",
-                //         Price = 2200m,
-                //         Img = "pics/Kolpak4.jpg",
-                //         Specs = "410x410mm",
-                //         Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
-                //     },
-                //     new Product()
-                //     {
-                //         Name = "Graphit (ТЕКСТУРА) Premium",
-                //         Price = 2200m,
-                //         Img = "pics/Kolpak5.jpg",
-                //         Specs = "210x210mm",
-                //         Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
-                //     },
-                //      new Product()
-                //      {
-                //          Name = "DRAP (текстура) Premium",
-                //          Price = 2200m,
-                //          Img = "pics/Kolpak6.jpg",
-                //          Specs = "310x310",
-                //          Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
-                //      }
-                //);
+                        Name = "Graphit (ТЕКСТУРА) Premium",
+                        Price = 2200m,
+                        Img = "pics/Kolpak3.jpg",
+                        Specs = "210x210mm",
+                        Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
+                    },
+                     new Product()
+                     {
+                         Name = "DRAP (текстура) Premium",
+                         Price = 2200m,
+                         Img = "pics/Kolpak4.jpg",
+                         Specs = "410x410mm",
+                         Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
+                     },
+                     new Product()
+                     {
+                         Name = "Graphit (ТЕКСТУРА) Premium",
+                         Price = 2200m,
+                         Img = "pics/Kolpak5.jpg",
+                         Specs = "210x210mm",
+                         Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
+                     },
+                      new Product()
+                      {
+                          Name = "DRAP (текстура) Premium",
+                          Price = 2200m,
+                          Img = "pics/Kolpak6.jpg",
+                          Specs = "310x310",
+                          Description = "Graphit Premium матовый, толщина 0.45m, цвет 7024",
+                      }
+                );
                 context.SaveChanges();
 
 

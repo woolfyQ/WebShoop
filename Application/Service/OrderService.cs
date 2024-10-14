@@ -9,7 +9,7 @@ namespace Application.Service
     public class OrderService : IOrder<Cart, ProductCartDTO>
     {
         private readonly IRepository<Cart> _cartRepository; // Репозиторий для Cart
-        //private readonly IRepository<ProductCart> _productCartRepository; // Репозиторий для ProductCart
+        private readonly IRepository<ProductCart> _productCartRepository; // Репозиторий для ProductCart
 
         public OrderService(IRepository<Cart> cartRepository, IRepository<ProductCart> productCartRepository)
         {
@@ -18,7 +18,7 @@ namespace Application.Service
 
         public async Task<Cart> Create(ProductCartDTO productCartDTO)
         {
-            var cart = await _cartRepository.GetByIdAsync(productCartDTO.Cart.Id);
+            var cart = await _cartRepository.Create(productCartDTO);
             if (cart == null)
             {
                 cart = new Cart
@@ -87,6 +87,14 @@ namespace Application.Service
             var cart = await _cartRepository.GetByIdAsync(productCartDTO.Id) ?? throw new Exception("Cart not found");
             await _cartRepository.Delete(cart,CancellationToken.None);
             return cart;
+        }
+
+        public async Task<Cart> GetByIdAsync(Guid id)
+        {
+            var cart = await _cartRepository.GetByIdAsync(id);
+            await _cartRepository.GetByIdAsync(id);
+            return cart;
+                        
         }
     }
 }

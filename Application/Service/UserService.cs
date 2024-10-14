@@ -21,7 +21,7 @@ namespace Application.Service
                 Id = Guid.NewGuid(),
                 Name = userDTO.Name,
                 Email = userDTO.Email,
-                Password = userDTO.Password,
+                Password = BCrypt.Net.BCrypt.HashPassword(userDTO.Password),
             };
             await _userRepository.Create(user,CancellationToken.None);
             return user;
@@ -51,7 +51,20 @@ namespace Application.Service
             await _userRepository.Delete(user,CancellationToken.None);  
             return user;
         }
-        
+        public async Task<User>ValidateUser(string email, string password)
+        {
+            var user = await _userRepository.GetByEmailAsync(email);
+            if (user == null || !VerifyPassword(password, user.Password))
+            {
+                return null; // Учетные данные неверные
+            }
+            return user;
+        }
+        private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
+        {
+             //библиотекf для хеширования паролей BCrypt
+            return BCrypt.Net.BCrypt.Verify(enteredPassword, storedPasswordHash);
+        }
 
 
     }
