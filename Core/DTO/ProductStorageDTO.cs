@@ -3,7 +3,7 @@
 
 namespace Core.DTO
 {
-    public class WareHouseDTO
+    public class ProductStorageDTO
     {
         public Guid Id { get; set; }
         public int Amount { get; set; }
@@ -11,7 +11,7 @@ namespace Core.DTO
 
 
 
-        public static implicit operator WareHouseDTO(ProductStorage productStorage) => new()
+        public static implicit operator ProductStorageDTO(ProductStorage productStorage) => new()
         {
             Id = productStorage.Id,
             Amount = productStorage.Amount,

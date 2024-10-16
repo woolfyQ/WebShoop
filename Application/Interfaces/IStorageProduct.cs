@@ -1,6 +1,6 @@
 ﻿namespace Application.Interfaces
 {
-    public interface IWareHouse<TEntity, TDto>
+    public interface IStorageProduct<TEntity, TDto>
     {
         Task<TEntity> Create(TDto Tdto);
         Task<TEntity> Update(Guid Id, TDto Tdto);

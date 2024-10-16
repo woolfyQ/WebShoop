@@ -6,6 +6,7 @@ using Core;
 using Infrastructure.Repository;
 using Application.Service;
 using WebShop.API;
+using Core.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +26,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(); // <-- Добавление Swagger
 
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+
 builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<WareHouseService>();
+builder.Services.AddScoped<StorageService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TokenProvider>();

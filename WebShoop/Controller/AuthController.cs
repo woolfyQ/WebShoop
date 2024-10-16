@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebShop.API.Controller
 {
-
     [ApiController]
     [Route("Auth")]
     public class AuthController: ControllerBase

@@ -73,6 +73,9 @@ namespace Infrastructure.Repository
             return await _context.Products.FindAsync(Id);
         }
 
-
+        public Task<Product> GetByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

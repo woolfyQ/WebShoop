@@ -6,9 +6,5 @@
         Task<TEntity> AddProduct (TDto dto );
         Task<TEntity> Delete (Guid Id, TDto dto);
         Task<TEntity> GetByIdAsync (Guid Id);
-
-
-
-
     }
 }

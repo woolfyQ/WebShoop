@@ -9,19 +9,19 @@ namespace WebShop.API.Controller
     [ApiController]
     [Route("Order")]
     [Authorize]
-    public class WareHouseController : ControllerBase
+    public class StorageController : ControllerBase
     {
 
 
-        private readonly WareHouseService _wareHouseService;
+        private readonly StorageService _wareHouseService;
 
-        public WareHouseController(WareHouseService wareHouseService)
+        public StorageController(StorageService wareHouseService)
         {
             _wareHouseService = wareHouseService;
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] WareHouseDTO wareHouseDTO)
+        public async Task<IActionResult> Create([FromBody] ProductStorageDTO wareHouseDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -33,7 +33,7 @@ namespace WebShop.API.Controller
         }
 
         [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProduct([FromBody] WareHouseDTO wareHouseDTO, int amount)
+        public async Task<IActionResult> AddProduct([FromBody] ProductStorageDTO wareHouseDTO, int amount)
         {
             if (!ModelState.IsValid)
             {
@@ -45,9 +45,9 @@ namespace WebShop.API.Controller
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
-            var warehouse = await _wareHouseService.Delete(id);
+            var warehouse = await _wareHouseService.Delete(Id);
             return Ok(warehouse);
         }
 

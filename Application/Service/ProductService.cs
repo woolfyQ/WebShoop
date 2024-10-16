@@ -7,7 +7,7 @@ using Application.Interfaces;
 namespace Application.Service
 {
 
-    public class ProductService : IApplicationService<Product, ProductDTO>
+    public class ProductService : IService<Product, ProductDTO>
     {
         
         private readonly IRepository<Product> _productRepository;
@@ -16,10 +16,6 @@ namespace Application.Service
         {
             _productRepository = productRepository;
         }
-
-
-
-  
         public async Task<Product> Create(ProductDTO productDTO)
         {
             var product = new Product

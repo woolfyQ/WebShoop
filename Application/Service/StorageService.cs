@@ -6,35 +6,34 @@ using Core.Entities;
 
 namespace Application.Service
 {
-    public class WareHouseService : IWareHouse<ProductStorage, WareHouseDTO>
+    public class StorageService : IStorageProduct<ProductStorage, ProductStorageDTO>
     {
         private readonly IRepository<ProductStorage> _storageRepository;
-
-        public WareHouseService(IRepository<ProductStorage> ProductStorage)
+        public StorageService(IRepository<ProductStorage> ProductStorage)
         {
             _storageRepository = ProductStorage;
         }
 
-        public async Task<ProductStorage> Create(WareHouseDTO wareHouseDTO)
+        public async Task<ProductStorage> Create(ProductStorageDTO ProductStorage)
         {
             var productStorage = new ProductStorage
             {
                 Id = Guid.NewGuid(),
                 Amount = 0,
-                Product = wareHouseDTO.Product,
+                Product = ProductStorage.Product,
             };
             await _storageRepository.Create(productStorage, CancellationToken.None); 
             return productStorage;
         }
-        public async Task <ProductStorage> Update (Guid Id,WareHouseDTO wareHouseDTO)
+        public async Task <ProductStorage> Update (Guid Id,ProductStorageDTO ProductStorage)
         {
             var productStorage = await _storageRepository.GetByIdAsync(Id);
             if (productStorage == null) 
             {
                 throw new Exception("ProductInStorage not found");
             }
-            productStorage.Amount = wareHouseDTO.Amount;
-            productStorage.Product = wareHouseDTO.Product;
+            productStorage.Amount = ProductStorage.Amount;
+            productStorage.Product = ProductStorage.Product;
 
             await _storageRepository.Update(productStorage, CancellationToken.None);
             return productStorage;
@@ -51,9 +50,9 @@ namespace Application.Service
             await _storageRepository.Delete(productStorage, CancellationToken.None);
             return productStorage;
         }
-        public async Task<ProductStorage> AddProduct(WareHouseDTO wareHouseDTO, int amount)
+        public async Task<ProductStorage> AddProduct(ProductStorageDTO ProductStorage, int amount)
         {
-            var productStorage = await _storageRepository.GetByIdAsync(wareHouseDTO.Id);
+            var productStorage = await _storageRepository.GetByIdAsync(ProductStorage.Id);
             if (productStorage == null)
             {
                 throw new Exception("Null");

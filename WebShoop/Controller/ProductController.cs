@@ -16,6 +16,7 @@ namespace WebShop.API.Controller
 
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductDTO productDTO)
         {
             if (!ModelState.IsValid)

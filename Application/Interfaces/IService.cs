@@ -1,6 +1,6 @@
 ﻿namespace Application.Interfaces
 {
-    public interface IApplicationService<TEntity, TDto>
+    public interface IService<TEntity, TDto>
     {
         Task<TEntity> Create(TDto dto);
         Task<TEntity> Update(Guid Id, TDto dto);

@@ -6,7 +6,4 @@ public class ProductCart : IEntity
     public Cart Cart { get; set; }
     public Product Product { get; set; }
     public int Amount { get; set; } 
-
-  
-
 }
