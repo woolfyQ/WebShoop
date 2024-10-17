@@ -14,26 +14,26 @@ namespace Application.Service
             _storageRepository = ProductStorage;
         }
 
-        public async Task<ProductStorage> Create(ProductStorageDTO ProductStorage)
+        public async Task<ProductStorage> Create(ProductStorageDTO ProductStorageDTO)
         {
             var productStorage = new ProductStorage
             {
                 Id = Guid.NewGuid(),
                 Amount = 0,
-                Product = ProductStorage.Product,
+                Product = ProductStorageDTO.Product,
             };
             await _storageRepository.Create(productStorage, CancellationToken.None); 
             return productStorage;
         }
-        public async Task <ProductStorage> Update (Guid Id,ProductStorageDTO ProductStorage)
+        public async Task <ProductStorage> Update (Guid Id,ProductStorageDTO ProductStorageDTO)
         {
             var productStorage = await _storageRepository.GetByIdAsync(Id);
             if (productStorage == null) 
             {
                 throw new Exception("ProductInStorage not found");
             }
-            productStorage.Amount = ProductStorage.Amount;
-            productStorage.Product = ProductStorage.Product;
+            productStorage.Amount = ProductStorageDTO.Amount;
+            productStorage.Product = ProductStorageDTO.Product;
 
             await _storageRepository.Update(productStorage, CancellationToken.None);
             return productStorage;
@@ -50,9 +50,9 @@ namespace Application.Service
             await _storageRepository.Delete(productStorage, CancellationToken.None);
             return productStorage;
         }
-        public async Task<ProductStorage> AddProduct(ProductStorageDTO ProductStorage, int amount)
+        public async Task<ProductStorage> AddProduct(ProductStorageDTO ProductStorageDTO, int amount)
         {
-            var productStorage = await _storageRepository.GetByIdAsync(ProductStorage.Id);
+            var productStorage = await _storageRepository.GetByIdAsync(ProductStorageDTO.Id);
             if (productStorage == null)
             {
                 throw new Exception("Null");

@@ -7,41 +7,67 @@ using Infrastructure.Repository;
 using Application.Service;
 using WebShop.API;
 using Core.DTO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Configure Entity Framework to use Npgsql for PostgreSQL
+// PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(); // <-- Добавление Swagger
+builder.Services.AddSwaggerGen(); //  Добавление Swagger
 
-builder.Services.AddScoped<IRepository<User>, UserRepository>();
+// Регистрация репозиториев
+builder.Services.AddScoped<IRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+builder.Services.AddScoped<IRepository<ProductStorage>, StorageRepository>();
+builder.Services.AddScoped<IRepository<User>, UserRepository>();
 
+// Регистрация сервисов
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<StorageService>();
-builder.Services.AddScoped<OrderService>();
-builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TokenProvider>();
-var app = builder.Build();
 
+// Настройка аутентификации JWT
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidAudience = builder.Configuration["JWT:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+    };
+});
+
+var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     SeedData.Initialize(app);
 }
 
-// Configure the HTTP request pipeline
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -57,12 +83,16 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting(); // Использование маршрутизации
+
+// Добавление аутентификации и авторизации
+app.UseAuthentication(); // Использование аутентификации
 app.UseAuthorization(); // Использование авторизации
 app.UseAntiforgery(); // Добавление защиты от CSRF
+
 app.MapControllers();
-// Map Razor Components
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
-// Run the application
+
 app.Run();

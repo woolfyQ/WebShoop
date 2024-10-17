@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Application.Service
 {
-    public class UserService : IApplicationService<User, UserDTO>
+    public class UserService : IService<User, UserDTO>
     {
         private readonly IRepository<User> _userRepository;
         

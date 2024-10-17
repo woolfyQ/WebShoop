@@ -68,7 +68,6 @@ namespace Application.Service
         public async Task<Product> GetByIdAsync(Guid Id)
         {
             var product = await _productRepository.GetByIdAsync(Id);
-
             if (product == null)
             {
                 throw new Exception("Product nof found");

@@ -21,33 +21,33 @@ namespace WebShop.API.Controller
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] ProductCartDTO productCartDTO)
+        public async Task<IActionResult> Create([FromBody] OrderDTO orderDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var cart = await _orderService.Create(productCartDTO);
+            var cart = await _orderService.Create(orderDTO);
             return CreatedAtAction(nameof(GetCart), new { id = cart.Id }, cart);
         }
 
         [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProduct([FromBody] ProductCartDTO productCartDTO)
+        public async Task<IActionResult> AddProduct([FromBody] OrderDTO orderDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var cart = await _orderService.AddProduct(productCartDTO);
+            var cart = await _orderService.AddProduct(orderDTO);
             return Ok(cart);
         }
 
         [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> Delete(Guid id, [FromBody] ProductCartDTO productCartDTO)
+        public async Task<IActionResult> Delete(Guid id, [FromBody] OrderDTO orderDTO)
         {
-            var cart = await _orderService.Delete(id, productCartDTO);
+            var cart = await _orderService.Delete(id, orderDTO);
             return Ok(cart);
         }
 

@@ -15,67 +15,54 @@ namespace Infrastructure.Repository
 
         public async Task Create(Product entity, CancellationToken cancellationToken)
         {
-            var product = entity as Product;
-            if (product == null)
-            {
-                throw new Exception("User not found");
-            }
-            await _context.Products.AddAsync(product, cancellationToken);
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            await _context.Products.AddAsync(entity, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task Create(IEnumerable<Product> entity, CancellationToken cancellationToken)
+        public async Task Create(IEnumerable<Product> entities, CancellationToken cancellationToken)
         {
-            var product = entity.OfType<Product>().ToList();
-            await _context.Products.AddRangeAsync(product, cancellationToken);
+            if (entities == null || !entities.Any()) throw new ArgumentNullException(nameof(entities));
+            await _context.Products.AddRangeAsync(entities, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
-
         }
 
         public async Task Update(Product entity, CancellationToken cancellationToken)
         {
-            var products = entity as Product;
-            if (products == null)
-            {
-                throw new Exception("User not found");
-            }
-            _context.Products.Update(products);
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            _context.Products.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task Update(IEnumerable<Product> entities, CancellationToken cancellationToken)
         {
-            var product = entities.OfType<Product>().ToList();
-            await _context.Products.AddRangeAsync(product, cancellationToken);
+            if (entities == null || !entities.Any()) throw new ArgumentNullException(nameof(entities));
+            _context.Products.UpdateRange(entities);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task Delete(Product entity, CancellationToken cancellationToken)
         {
-            var products = entity as Product;
-            if (products == null)
-            {
-                throw new Exception("User not found");
-            }
-            _context.Products.Remove(products);
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            _context.Products.Remove(entity);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task Delete(IEnumerable<Product> entity, CancellationToken cancellationToken)
+        public async Task Delete(IEnumerable<Product> entities, CancellationToken cancellationToken)
         {
-            var products = entity.OfType<Product>().ToList();
-            _context.Products.RemoveRange(products);
+            if (entities == null || !entities.Any()) throw new ArgumentNullException(nameof(entities));
+            _context.Products.RemoveRange(entities);
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Product> GetByIdAsync(Guid Id)
+        public async Task<Product> GetByIdAsync(Guid id)
         {
-            return await _context.Products.FindAsync(Id);
+            return await _context.Products.FindAsync(id);
         }
 
         public Task<Product> GetByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // Реализуйте при необходимости
         }
     }
 }
